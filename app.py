@@ -11,74 +11,89 @@ app.config['MONGO_URI'] = 'mongodb+srv://root:rootUser@myfirstcluster-lrum9.mong
 
 mongo = PyMongo(app)
 
-#This pulls all books from the DB as a start and displays them on the home page
+# This pulls all books from the DB as a start and displays them on the home
+# page
+
+
 @app.route('/')
 @app.route('/get_book')
 def get_book():
     return render_template("books.html", books=mongo.db.books.find())
-    
-#redirct function to the page where users can add a book   
+
+
+# redirct function to the page where users can add a book.
 @app.route('/add_book')
 def add_book():
-    return render_template('addbook.html') 
-    
-    
-#function to add the book to the database    
-@app.route('/insert_book', methods =['POST'])
+    return render_template('addbook.html')
+
+
+@app.route('/add_review')
+def add_review():
+    return render_template('addreview.html')
+
+
+# function to add the book to the database.
+@app.route('/insert_book', methods=['POST'])
 def insert_book():
     books = mongo.db.books
     books.insert_one(request.form.to_dict())
-    return redirect(url_for('get_book'))    
+    return redirect(url_for('get_book'))
 
 
-#This function redirects to a view page with more information on the book that was clicked on    
+@app.route('/insert_review', methods=['POST'])
+def insert_review():
+    review = mongo.db.users
+    review.insert_one(request.form.to_dict())
+    return redirect(url_for('view_book'))
+
+
+# This function redirects to a view page with more information on the book that
+# was clicked on.
 @app.route('/view_book/<book_id>')
 def view_book(book_id):
-   the_book = mongo.db.books.find_one({"_id": ObjectId(book_id)})
-   return render_template('viewbook.html', book=the_book)
- 
- 
-#This function shows all of the books on the viewbook.html page, when the book is clicked on from the home page   
+    the_book = mongo.db.books.find_one({"_id": ObjectId(book_id)})
+    return render_template('viewbook.html', book=the_book)
+
+
+# This function shows all of the books on the viewbook.html page, when the book
+# is clicked on from the home page.
 @app.route('/show_book/<book_id>')
 def show_book(book_id):
     books = mongo.db.books
-    books.find_one({'_id':ObjectId(book_id)},
-    {
-    'book_name':request.form.get('book_name')
-    })
+    books.find_one({'_id': ObjectId(book_id)}, {
+        'book_name': request.form.get('book_name')
+         })
 
 
-#function to redirect to the page to edit book details     
+# function to redirect to the page to edit book details.
 @app.route('/edit_book/<book_id>')
 def edit_book(book_id):
-  the_book = mongo.db.books.find_one({"_id": ObjectId(book_id)})
-  return render_template('editbook.html', book=the_book)
-  
-  
-@app.route('/update_book/<book_id>', methods = ["POST"])
+    the_book = mongo.db.books.find_one({"_id": ObjectId(book_id)})
+    return render_template('editbook.html', book=the_book)
+
+
+@app.route('/update_book/<book_id>', methods=["POST"])
 def update_book(book_id):
     books = mongo.db.books
-    books.update({'_id': ObjectId(book_id)},
-    {
-        'book_name':request.form.get('book_name'),
-        'author_name':request.form.get('author_name'),
-        'cover_link':request.form.get('cover_link'),
-        'link':request.form.get('link'),
-        'Genre':request.form.get('Genre'),
-        'published_date':request.form.get('published_date'),
-        'review':request.form.get('review')
+    books.update({'_id': ObjectId(book_id)}, {
+        'book_name': request.form.get('book_name'),
+        'author_name': request.form.get('author_name'),
+        'cover_link': request.form.get('cover_link'),
+        'link': request.form.get('link'),
+        'Genre': request.form.get('Genre'),
+        'published_date': request.form.get('published_date'),
+        
     })
     return redirect(url_for('get_book'))
 
-#Deletes a book
+# Deletes a book
 @app.route('/delete_book/<book_id>')
 def delete_book(book_id):
     mongo.db.books.remove({'_id': ObjectId(book_id)})
     return redirect(url_for('get_book'))
 
-if __name__ =='__main__':
+
+if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
-        port=int(os.environ.get('PORT')),
-        debug= True)
-        
-        
+            port=int(os.environ.get('PORT')),
+            debug=True)

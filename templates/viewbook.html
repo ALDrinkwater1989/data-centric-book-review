@@ -1,53 +1,28 @@
 {%extends 'base.html'%} {% block content %}
-<div action="{{url_for('show_book', book_id=book._id)}}">
-    <div class="row">
-        <div class="input-field col s6">
-            <strong>Name: {{book.book_name}}</strong>
-            
-        </div>
-        <div class="input-field col s6">
-            <strong>Author: {{book.author_name}}</strong>
-         
-        </div>
-    </div>
-    <div class="row">
-        <div class="input-field col s6">
-            <strong>Published: {{book.published_date}}</strong>
-        </div>
-        <div class="input-field col s6">
-            <strong>Genre: {{book.Genre}}</strong>
-        </div>
-    </div>
-    <div class="row">
-         <div class="input-field col s6">
-             <a class = "book-links" href = "{{book.link}}">Buy here</a>
- 
-        </div>
-        
-         <div class="input-field col s6">
-         <a class = "book-links" href = "{{book.cover_link}}">Cover Image</a>
-        </div>
 
-    </div>
-</div>
+<table>
+<tr>
+<th>Name</th>
+<td>{{book.book_name}}</td>
+<th>Author</th>
+<td>{{book.author_name}}</td>
+</tr>
+<tr>
+<th>Published</th>
+<td>{{book.published_date}}</td>
+<th>Genre</th>
+<td>{{book.Genre}}</td>
+</tr>
+<tr>
+<th>Buy Here</th>
+<td>{{book.link}}</td>
+<th>Cover Image</th>
+<td>{{book.cover_link}}</td>
+</tr>
 
-<form action="" method="POST"  class="col s12">
-     <div class="row">
-           
-            <div class="input-field col s12">
-                <i class="material-icons prefix">assignment</i>
-                <input id="user_name" name="user_name" type="text">
-                <label for="icon_prefix">Your Name</label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s12">
-                <i class="material-icons prefix">subject</i>
-                <textarea name="user_review" id="user_review" class="materialize-textarea"></textarea>
-                <label for="icon_telephone">What do you think of the book?</label>
-            </div>
-        </div>
-    
-    </form>
+</table>
+
+
+<td><a href="{{url_for('add_review', book_id=book._id)}}" class="waves-effect waves-light btn btn_small green">Add Review</a></td>
     
 {% endblock %}
