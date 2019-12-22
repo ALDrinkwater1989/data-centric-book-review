@@ -1,10 +1,21 @@
 FROM gitpod/workspace-mongodb
                     
-USER gitpod
+
 
 # Install custom tools, runtime, etc. using apt-get
-# For example, the command below would install "bastet" - a command line tetris clone:
-#
-# RUN sudo apt-get -q update && #     sudo apt-get install -yq bastet && #     sudo rm -rf /var/lib/apt/lists/*
-#
-# More information: https://www.gitpod.io/docs/42_config_docker/
+FROM gitpod/workspace-full:latest
+
+USER root
+# Setup Heroku CLI
+RUN curl https://cli-assets.heroku.com/install.sh | sh
+
+USER gitpod
+# Local environment variables
+# C9_* variables are temporary
+ENV C9_USER="gitpod"
+ENV PORT="8080"
+ENV IP="0.0.0.0"
+ENV C9_HOSTNAME="localhost"
+
+USER root
+# Switch back to root to allow IDE to load
