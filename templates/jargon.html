@@ -1,0 +1,38 @@
+{% extends 'base.html' %} {% block content %}
+<div class="row">
+    <ul class="collapsible" data-collapsible="accordian">
+
+        {% for jargon in jargons %}
+<li>
+    <div class="collapsible-header">
+        <div class="col s3">
+            <i class="material-icons">expand_more</i>
+
+            <a href="{{url_for('delete_jargon', jargon_id=jargon._id)}}" class="waves-effect waves-light btn btn_small green">Delete</a>
+
+            <a href="{{url_for('edit_jargon', jargon_id=jargon._id)}}" class="waves-effect waves-light btn btn_small blue">Edit</a>
+        </div>
+        <div class="task-header col s9">
+            <strong> {{jargon.jargon_name}}</strong>
+        </div>
+    </div>
+
+    <div class="collapsible-body">
+        <span>
+              {{jargon.description}}
+              {{jargon.category_name}}
+      </span>
+    </div>
+</li>
+        {% endfor %}
+    </ul>
+</div>
+
+<div class="row">
+    <a href="{{url_for('add_jargon')}}" class="waves-effect waves-light btn">
+        <i class="material-icons right">playlist_add</i>Add Task
+    </a>
+</div>
+
+
+{% endblock %}
