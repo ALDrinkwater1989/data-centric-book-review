@@ -1,6 +1,6 @@
 import os
 from flask import Flask, render_template, redirect, request, url_for
-from flask_pymongo import PyMongo
+from flask_pymongo import PyMongo, pymongo
 from bson.objectid import ObjectId
 
 
@@ -18,7 +18,7 @@ mongo = PyMongo(app)
 @app.route('/')
 @app.route('/get_jargon')
 def get_jargon():
-    return render_template("jargon.html", jargons=mongo.db.jargon.find())
+    return render_template("jargon.html", jargons=mongo.db.jargon.find().sort('jargon_name', pymongo.ASCENDING))
 
 
 @app.route('/add_jargon')
