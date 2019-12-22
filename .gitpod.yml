@@ -7,8 +7,9 @@ ports:
 
 # List the start up tasks. You can start them in parallel in multiple terminals. See https://www.gitpod.io/docs/44_config_start_tasks/
 tasks:
-- init: echo 'init script' # runs during prebuild
+- init: echo 'init script' . ${GITPOD_REPO_ROOT}/init_tasks.sh     # runs during prebuild
   command: echo 'start script'
+  
 vscode:
   extensions:
     - VisualStudioExptTeam.vscodeintellicode@1.2.0:ZVy7XFOZUd4m0FZb3PUFbA==
