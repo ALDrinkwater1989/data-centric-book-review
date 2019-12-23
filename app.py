@@ -26,7 +26,7 @@ def add_jargon():
     return render_template('addjargon.html',
                            categories=mongo.db.categories.find())
 
-
+# Adds a new definition to the database.
 @app.route('/insert_jargon', methods=['POST'])
 def insert_jargon():
     jargon = mongo.db.jargon
