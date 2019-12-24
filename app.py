@@ -18,7 +18,8 @@ mongo = PyMongo(app)
 @app.route('/')
 @app.route('/get_jargon')
 def get_jargon():
-    return render_template("jargon.html", jargons=mongo.db.jargon.find().sort('jargon_name', pymongo.ASCENDING))
+    return render_template("jargon.html",
+                           jargons=mongo.db.jargon.find().sort('jargon_name', pymongo.ASCENDING))
 
 
 @app.route('/add_jargon')
