@@ -11,9 +11,6 @@ app.config['MONGO_URI'] = 'mongodb+srv://root:rootUser@myfirstcluster-lrum9.mong
 
 mongo = PyMongo(app)
 
-# This pulls all books from the DB as a start and displays them on the home
-# page
-
 
 @app.route('/')
 @app.route('/get_jargon')
