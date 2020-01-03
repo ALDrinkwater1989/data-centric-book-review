@@ -1,15 +1,29 @@
 {% extends 'base.html' %} {% block content %}
-<div class="row">
-	<ul class="collapsible" data-collapsible="accordian">
-		<form>
+<div>
+<h1>
+Welcome
+</h1>
+<p>
+Here you will find 
+</P>
+</div>
+
+<div class ="row">
+<form>
         <div class="input-field">
           <input id="search" type="search" required>
-          <label class="label-icon" for="search"><i class="material-icons">search</i></label>
           <i class="material-icons">close</i>
+           <label>Search For Term</label>
         </div>
       </form>
+</div>
 
-		</br>
+<div class="row">
+	<ul class="collapsible" data-collapsible="accordian">
+		
+
+
+
 
 		{% for jargon in jargons %}
 		<li>
