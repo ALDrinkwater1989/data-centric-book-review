@@ -12,33 +12,13 @@ app.config['MONGO_URI'] = 'mongodb+srv://root:rootUser@myfirstcluster-lrum9.mong
 
 mongo = PyMongo(app)
 
-""" mongo.db.jargon.create_index([
-      ('jargon_name', 'text'),
-      ('description', 'text'),
-  ],
-  name="search_index",
-  weights={
-      'jargon_name': 100,
-      'description': 25
-  }
-)
-
-
-@app.route('/search')
-def search():
-    query = request.form['q']
-    text_results = mongo.db.command('text', 'jargon', search=query)
-    doc_matches = (res['obj'] for res in text_results['results'])
-    return render_template("search.html", results=results)
- """
-
 
 @app.route('/')
 @app.route('/get_jargon')
 def get_jargon():
     return render_template("jargon.html",
                            jargons=mongo.db.jargon.find().sort
-                           ('jargon_name', ASCENDING))
+                           ('jargon_name', ASCENDING).limit(10))
 
 
 @app.route('/add_jargon')
