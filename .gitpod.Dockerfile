@@ -26,5 +26,8 @@ RUN sudo apt-get update \
  && sudo rm -rf /var/cache/apt/* /var/lib/apt/lists/* /tmp/*
 RUN sudo mkdir -p /data/db
 RUN sudo chown gitpod:gitpod -R /data/db
+RUN pip3 install flask
+RUN pip3 install flask_pymongo
+RUN pip3 install dnspython
 USER root
 # Switch back to root to allow IDE to load
