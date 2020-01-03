@@ -1,6 +1,7 @@
 import os
 from flask import Flask, render_template, redirect, request, url_for
-from flask_pymongo import PyMongo, pymongo
+from flask_pymongo import PyMongo
+from pymongo import ASCENDING
 from bson.objectid import ObjectId
 
 
@@ -11,12 +12,33 @@ app.config['MONGO_URI'] = 'mongodb+srv://root:rootUser@myfirstcluster-lrum9.mong
 
 mongo = PyMongo(app)
 
+""" mongo.db.jargon.create_index([
+      ('jargon_name', 'text'),
+      ('description', 'text'),
+  ],
+  name="search_index",
+  weights={
+      'jargon_name': 100,
+      'description': 25
+  }
+)
+
+
+@app.route('/search')
+def search():
+    query = request.form['q']
+    text_results = mongo.db.command('text', 'jargon', search=query)
+    doc_matches = (res['obj'] for res in text_results['results'])
+    return render_template("search.html", results=results)
+ """
+
 
 @app.route('/')
 @app.route('/get_jargon')
 def get_jargon():
     return render_template("jargon.html",
-                           jargons=mongo.db.jargon.find().sort('jargon_name', pymongo.ASCENDING))
+                           jargons=mongo.db.jargon.find().sort
+                           ('jargon_name', ASCENDING))
 
 
 @app.route('/add_jargon')
@@ -53,7 +75,7 @@ def update_jargon(jargon_id):
 
 @app.route('/delete_jargon/<jargon_id>')
 def delete_jargon(jargon_id):
-    mongo.dg.remove({'_id': ObjectId(jargon_id)})
+    mongo.db.jargon.remove({'_id': ObjectId(jargon_id)})
     return redirect(url_for('get_jargon'))
 
 
