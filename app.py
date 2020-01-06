@@ -20,6 +20,10 @@ def get_jargon():
                            jargons=mongo.db.jargon.find().sort
                            ('jargon_name', ASCENDING).limit(10))
 
+@app.route('/search')
+def search():
+    render_templater('search.html')
+
 
 @app.route('/add_jargon')
 def add_jargon():
