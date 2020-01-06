@@ -9,14 +9,14 @@ Here you will find
 </div>
 
 <div class ="row">
-<form >
+<form action = "{{ url_for('search') }}" >
         <div class="input-field">
-          <input id="search" name ="search" type="search" required>
+          <input id="search" name ="search" type="search" >
           <i class="material-icons">close</i>
            <label>Search For Term</label>
         </div>
-      </form> <button class="btn waves-effect waves-light" type="submit" name="action">search
-            <i class="material-icons right">add_circle</i>
+       
+      </form> 
 </div>
 
 <div class="row">

@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, redirect, request, url_for
+from flask import Flask, render_template, redirect, request, url_for, flash
 from flask_pymongo import PyMongo
 from pymongo import ASCENDING
 from bson.objectid import ObjectId
@@ -20,9 +20,10 @@ def get_jargon():
                            jargons=mongo.db.jargon.find().sort
                            ('jargon_name', ASCENDING).limit(10))
 
+
 @app.route('/search')
 def search():
-    render_templater('search.html')
+    return render_template('search.html')
 
 
 @app.route('/add_jargon')
@@ -73,13 +74,6 @@ def get_categories():
 def delete_category(category_id):
     mongo.db.categories.remove({'_id': ObjectId(category_id)})
     return redirect(url_for('get_categories'))
-
-
-@app.route('/edit_category/<category_id>')
-def edit_category(category_id):
-    return render_template('editcategory.html',
-                           category=mongo.db.categories.find_one
-                           ({'_id': ObjectId()}))
 
 
 @app.route('/update_category/<category_id>', methods=['POST'])
