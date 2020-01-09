@@ -1,3 +1,53 @@
 {% extends 'base.html' %} {% block content %}
 
+{% if jargons|length <= 0 %}
+  <p class="grey-text text-darken-4 center-align"><strong>There are no Terms matching this criteria</strong></p>
+{% else %}
+ <div class="row">
+	<ul class="collapsible" data-collapsible="accordian">
+		
+
+
+
+
+		{% for jargon in jargons %}
+		<li>
+			<div class="collapsible-header">
+
+				<div class="task-header col s6">
+					<strong> {{jargon.jargon_name}}</strong>
+				</div>
+				<div class="col s3">
+					<strong>{{jargon.category_name}}</strong>
+				</div>
+				<div class="col s3">
+					<i class="material-icons">expand_more</i>
+
+					<a href="{{url_for('delete_jargon', jargon_id=jargon._id)}}"
+						class="waves-effect waves-light btn btn_small green">Delete</a>
+
+					<a href="{{url_for('edit_jargon', jargon_id=jargon._id)}}"
+						class="waves-effect waves-light btn btn_small blue">Edit</a>
+				</div>
+
+			</div>
+
+			<div class="collapsible-body">
+				<span>
+              {{jargon.description}}
+              
+      </span>
+			</div>
+		</li>
+		{% endfor %}
+	</ul>
+</div>
+    {% endif %}
+<div class="row">
+	<a href="{{url_for('get_jargon')}}" class="waves-effect waves-light btn">
+		<i class="material-icons right">add_circle</i>Back
+	</a>
+</div>
+
+
 {%endblock%}
