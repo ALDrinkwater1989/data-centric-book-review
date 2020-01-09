@@ -16,7 +16,7 @@
       {% endif %}
       {% endfor %}
     </select>
-                <label>Task Category</label>
+                <label>Category</label>
             </div>
 
 
@@ -25,14 +25,14 @@
             <div class="input-field col s12">
                 <i class="material-icons prefix">assignment</i>
                 <input id="jargon_name" name="jargon_name" type="text" class="validate" value = "{{jargon.jargon_name}}">
-                <label for="icon_prefix">Task Name</label>
+                <label for="icon_prefix">Definition</label>
             </div>
         </div>
         <div class="row">
             <div class="input-field col s12">
                 <i class="material-icons prefix">subject</i>
-                <textarea id="task_description" name="task_description" class="materialize-textarea">{{jargon.description}}</textarea>
-                <label for="icon_telephone">Task Description</label>
+                <textarea id="description" name="description" class="materialize-textarea">{{jargon.description}}</textarea>
+                <label for="icon_telephone">Description</label>
             </div>
         </div>
        
