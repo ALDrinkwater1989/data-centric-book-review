@@ -49,6 +49,16 @@ ul .collapisle{
     margin: 5px 5px;
     padding: 0 0.5em;
     
+    
+}
+
+.btn:hover, .btn-large:hover {
+    background-color: 
+    #2a2e6f;
+}
+
+.btn{
+    background-color: #45b2d4;
 }
 /*-----Search box-----*/
 
