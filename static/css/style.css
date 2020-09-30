@@ -71,7 +71,11 @@ ul .collapisle{
 
 
 .intro{
-
-    max-width: 80%;
-    background-color: #000000;
+   width: 100%;
+    padding: 15px 10px;
+    border-radius: 10px;
+    background-color: #fafafa;
+    opacity: 0.9;
+    margin: 12.5px 0;
+    text-align: center;
 }
