@@ -15,7 +15,7 @@ mongo = PyMongo(app)
 
 @app.route('/')
 
-# Get all recipes
+#Get all terms
 @app.route('/get_jargon')
 def get_jargon():
     jargons = list(mongo.db.jargon.find())
@@ -63,11 +63,11 @@ def edit_jargon(jargon_id):
 def update_jargon(jargon_id):
     jargon = mongo.db.jargon
     jargon.update({'_id': ObjectId(jargon_id)},
-    {
+                  {
             'jargon_name': request.form.get('jargon_name'),
             'category_name': request.form.get('category_name'),
             'description': request.form.get('description')
-    })
+                })
     return redirect(url_for('get_jargon'))
 
 
