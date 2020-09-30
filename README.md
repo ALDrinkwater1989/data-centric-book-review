@@ -27,7 +27,7 @@ This website was designed to be functional, rather than "pretty" my orignal idea
 As stated above this website was designed with function in mind over looks, as such the designed for the site took on a more minimalist approach and only contained elements on the page that were deemed to be necessary.
 
 ![home](static/WIREFRAMES/home.png)
-![search](static/WIREFRAMES/SEARH_RESULTS.png)
+![search](static/WIREFRAMES/SEARCH_RESULTS.png)
 ![add and edit](static/WIREFRAMES/ADD.png)
 
 ## Features
